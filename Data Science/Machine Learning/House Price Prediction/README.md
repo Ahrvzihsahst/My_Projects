@@ -61,7 +61,11 @@ Heatmap to visualize feature correlations:
 
 ```python
 plt.figure(figsize=(12, 6))
-sns.heatmap(dataset.corr(), cmap='BrBG', fmt='.2f', linewidths=2, annot=True)
+categorical_cols = dataset.select_dtypes(include=['object']).columns
+corr_matrix = dataset.drop(columns=categorical_cols).corr()
+
+sns.heatmap(corr_matrix, cmap='BrBG', linewidths=2, annot=True)
+plt.show()
 ```
 
 Barplot to analyze unique values of categorical features:
@@ -111,20 +115,32 @@ new_dataset = dataset.dropna()
 ## OneHotEncoder for Label Categorical Features
 
 ```python
+from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 
+# Identify categorical columns
 s = (new_dataset.dtypes == 'object')
 object_cols = list(s[s].index)
-print("Categorical variables:")
-print(object_cols)
-print('No. of categorical features: ', len(object_cols))
 
-OH_encoder = OneHotEncoder(sparse=False)
-OH_cols = pd.DataFrame(OH_encoder.fit_transform(new_dataset[object_cols]))
+# Create a ColumnTransformer with OneHotEncoder
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('cat', OneHotEncoder(), object_cols)
+    ],
+    remainder='passthrough'
+)
+
+# Apply the ColumnTransformer to the dataset
+OH_cols = pd.DataFrame(preprocessor.fit_transform(new_dataset))
 OH_cols.index = new_dataset.index
-OH_cols.columns = OH_encoder.get_feature_names()
-df_final = new_dataset.drop(object_cols, axis=1)
-df_final = pd.concat([df_final, OH_cols], axis=1)
+
+# Get the column names after one-hot encoding
+new_columns = list(preprocessor.get_feature_names_out())
+OH_cols.columns = new_columns
+
+# Concatenate the one-hot encoded columns to the dataset
+df_final = pd.concat([new_dataset.drop(object_cols, axis=1), OH_cols], axis=1)
+
 ```
 
 ## Splitting Dataset into Training and Testing
@@ -184,6 +200,7 @@ print(mean_absolute_percentage_error(Y_valid, Y_pred_LR))
 
 ```python
 from catboost import CatBoostRegressor
+from sklearn.metrics import r2_score
 
 cb_model = CatBoostRegressor()
 cb_model.fit(X_train, Y_train)
