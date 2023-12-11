@@ -53,7 +53,7 @@ To replicate the experiment, follow these steps:
    pip install pandas matplotlib scikit-learn nltk xgboost lightgbm catboost
    ```
 
-2. Execute the Jupyter Notebook `Sentiment_Analysis.ipynb` step by step.
+2. Execute the Jupyter Notebook `ML on top of NLP for Sentiment Analysis.ipynb` step by step.
 
 ## Results
 
