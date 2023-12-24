@@ -84,12 +84,33 @@ Explain how to use your project, including any configuration files, command-line
 
 
 ## Results
+ These are the factors  which can be taken into considerations to decide that an applicant will repay:
+- NAME_EDUCATION_TYPE: Academic degree has less defaults.
+- NAME_INCOME_TYPE: Student and Businessmen have no defaults.
+- REGION_RATING_CLIENT: RATING 1 is safer.
+- ORGANIZATION_TYPE: Clients with Trade Type 4 and 5 and Industry type 8 have defaulted less than 3%
+- DAYS_BIRTH: People above age of 50 have low probability of defaulting
+- DAYS_EMPLOYED: Clients with 40+ year experience having less than 1% default rate
+- AMT_INCOME_TOTAL:Applicant with Income more than 700,000 are less likely to default
+- NAME_CASH_LOAN_PURPOSE: Loans bought for Hobby, Buying garage are being repayed mostly.
+- CNT_CHILDREN: People with zero to two children tend to repay the loans.
 
-Share the main results or outcomes of your project. Include visualizations or other relevant materials.
+  
+Decisive Factor whether an applicant will be Defaulter:
+- CODE_GENDER: Men are at relatively higher default rate
+- NAME_FAMILY_STATUS : People who have civil marriage or who are single default a lot.
+- NAME_EDUCATION_TYPE: People with Lower Secondary & Secondary education
+- NAME_INCOME_TYPE: Clients who are either at Maternity leave OR Unemployed default a lot.
+- REGION_RATING_CLIENT: People who live in Rating 3 has highest defaults.
+- OCCUPATION_TYPE: Avoid Low-skill Laborers, Drivers and Waiters/barmen staff, Security staff, Laborers and Cooking staff as the default rate is huge.
+- DAYS_BIRTH: Avoid young people who are in age group of 20-40 as they have higher probability of defaulting
+- DAYS_EMPLOYED: People who have less than 5 years of employment have high default rate.
+- CNT_CHILDREN & CNT_FAM_MEMBERS: Client who have children equal to or more than 9 default 100% and hence their applications are to be rejected.
+- AMT_GOODS_PRICE: When the credit amount goes beyond 3M, there is an increase in defaulters.
 
 ## Contributing
 
-Provide information on how others can contribute to your project. Include guidelines for submitting issues, feature requests, and pull requests.
+Feel free to contribute to this project by forking the repository and submitting pull requests. Bug reports, suggestions, and feature requests are also welcome.
 
 ## License
 
