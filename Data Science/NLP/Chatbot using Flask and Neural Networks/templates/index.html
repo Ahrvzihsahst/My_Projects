@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ </head>
+ <body>
+    <style>
+        #askMeButton {
+            position: fixed;
+            bottom: 300px;
+            right: 500px;
+            width: 200px;
+            height: 200px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    
+        #askMeButton:hover {
+            background-color: #45a049;
+        }
+    
+        .chatbot-container {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 3000;
+            border-radius: 10px;
+            flex-direction: column;
+        }
+    
+        .chatbot-header {
+            padding: 10px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            cursor: grab;
+            user-select: none;
+        }
+    
+        .chatbot-body {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+    
+        .user-message,
+        .bot-message {
+            margin-bottom: 10px;
+        }
+    
+        .user-message {
+            text-align: right;
+            color: #333;
+        }
+    
+        .bot-message {
+            text-align: left;
+            color: #555;
+        }
+    
+        .chatbot-input {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            border-radius: 0 0 10px 10px;
+        }
+    
+        .chat-input {
+            flex-grow: 1;
+            padding: 8px;
+            margin-right: 10px;
+        }
+    
+        .send-button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+        
+<button id="askMeButton"><h1>Click Me</h1></button>
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+        <h4>Biswa</h4>
+        <button id="closeChatbot">&#10006;</button>
+    </div>
+    <div class="chatbot-body" id="chatbotBody">
+        <!-- Chatbot messages go here -->
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" class="chat-input" placeholder="Type your message...">
+        <button id="sendMessage" class="send-button">Send</button>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const askMeButton = document.getElementById('askMeButton');
+        const chatbotContainer = document.getElementById('chatbotContainer');
+        const closeChatbotButton = document.getElementById('closeChatbot');
+        const sendMessageButton = document.getElementById('sendMessage');
+        const chatInput = document.getElementById('chatInput');
+        const chatbotBody = document.getElementById('chatbotBody');
+
+        askMeButton.addEventListener('click', function () {
+            chatbotContainer.style.display = 'flex';
+        });
+
+        closeChatbotButton.addEventListener('click', function () {
+            chatbotContainer.style.display = 'none';
+        });
+
+        sendMessageButton.addEventListener('click', function () {
+            const userMessage = chatInput.value.trim();
+            if (userMessage !== '') {
+                displayMessage(userMessage, 'user');
+                // Make a POST request to the Flask server
+                fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userMessage }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Display the response in the chat window
+                        displayMessage(data.message, 'bot');
+                    })
+                    .catch(error => console.error('Error:', error));
+
+                chatInput.value = ''; // Clear the input field
+            }
+        });
+
+        function displayMessage(message, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', `${sender}-message`);
+            messageElement.textContent = message;
+            chatbotBody.appendChild(messageElement);
+        }
+    });
+</script>
+ </body>
+ </html>
