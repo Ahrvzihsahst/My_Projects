@@ -7,7 +7,7 @@
 - [Dependencies](#dependencies)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [Data Analysis](#data-analysis)
+- [EDA](#analysis)
 - [Results](#results)
 - [Contributing](#contributing)
 - [License](#license)
@@ -45,9 +45,43 @@ python your_script.py
 
 Explain how to use your project, including any configuration files, command-line arguments, or input data.
 
-## Data Analysis
+## EDA
 
-If your project involves data analysis, provide details on the data used, analysis methods, and key insights.
+1. **Importing Libraries:** You've imported necessary libraries like NumPy, Pandas, Matplotlib, Seaborn, and Missingno.
+
+2. **Data Inspection and Cleaning:**
+   - Loaded a dataset (`application_data.csv`) using Pandas.
+   - Checked the structure and information about the dataset.
+   - Handled missing values by visualizing them and dropping unnecessary columns.
+   - Inspected and dropped columns based on the percentage of missing values.
+   - Explored and visualized data distribution, correlations, and outliers.
+   - Converted and standardized some numerical features.
+   - Binned numerical columns to create categorical columns.
+   - Converted negative days to positive days in date-related columns.
+   - Converted numerical columns to categorical based on certain criteria.
+   - Imputed missing values in categorical columns.
+
+3. **Data Analysis and Visualization:**
+   - Analyzed and visualized the imbalance in the target variable.
+   - Plotted univariate and bivariate categorical analyses using bar plots and point plots.
+   - Analyzed the relationship between income type and income amount range.
+   - Explored and visualized correlations between numerical variables.
+   - Examined the distribution of numerical columns related to the amount using density plots.
+
+4. **Functions:**
+   - Created functions for univariate categorical analysis (`univariate_categorical`).
+   - Defined a function for bivariate bar plots (`bivariate_bar`).
+   - Implemented a function for bivariate relational plots (`bivariate_rel`).
+   - Developed functions for univariate categorical analysis on the merged dataframe (`univariate_merged`).
+   - Created a function for merged point plots (`merged_pointplot`).
+
+5. **Categorical Variable Analysis:**
+   - Explored various categorical variables such as contract type, gender, car ownership, realty ownership, etc., based on loan repayment status.
+
+6. **Numeric Variables Analysis:**
+   - Analyzed and visualized correlations between numeric variables.
+   - Explored the distribution of numerical columns related to amounts using density plots.
+
 
 ## Results
 
