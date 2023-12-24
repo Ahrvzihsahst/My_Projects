@@ -8,7 +8,7 @@
 - [Getting Started](#getting-started)
 - [EDA](#eda)
 - [Results](#results)
-- [Contribution](#contributing)
+- [Contribution](#contribution)
 - [License](#license)
 
 ## Introduction
@@ -22,8 +22,6 @@ This notebook contains exploratory data analysis (EDA) on bank loan default risk
 - Jupyter Notebook
 
 ## Getting Started
-
-Provide instructions on how to set up the project locally. Include steps for installing dependencies and running the code.
 
 ```bash
 # Clone the repository
@@ -41,7 +39,7 @@ python your_script.py
 
 ## EDA
 
-1. **Importing Libraries:** You've imported necessary libraries like NumPy, Pandas, Matplotlib, Seaborn, and Missingno.
+1. **Importing Libraries:** Imported necessary libraries like NumPy, Pandas, Matplotlib, Seaborn, and Missingno.
 
 2. **Data Inspection and Cleaning:**
    - Loaded a dataset (`application_data.csv`) using Pandas.
@@ -102,7 +100,7 @@ Decisive Factor whether an applicant will be Defaulter:
 - CNT_CHILDREN & CNT_FAM_MEMBERS: Client who have children equal to or more than 9 default 100% and hence their applications are to be rejected.
 - AMT_GOODS_PRICE: When the credit amount goes beyond 3M, there is an increase in defaulters.
 
-## Contributing
+## Contribution
 
 Feel free to contribute to this project by forking the repository and submitting pull requests. Bug reports, suggestions, and feature requests are also welcome.
 
