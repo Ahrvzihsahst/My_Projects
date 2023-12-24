@@ -6,12 +6,10 @@
 - [Introduction](#introduction)
 - [Dependencies](#dependencies)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [EDA](#analysis)
+- [EDA](#eda)
 - [Results](#results)
-- [Contributing](#contributing)
+- [Contribution](#contributing)
 - [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
@@ -40,10 +38,6 @@ pip install -r requirements.txt
 # Run the project
 python your_script.py
 ```
-
-## Usage
-
-Explain how to use your project, including any configuration files, command-line arguments, or input data.
 
 ## EDA
 
@@ -114,12 +108,5 @@ Feel free to contribute to this project by forking the repository and submitting
 
 ## License
 
-Specify the license under which your project is released.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgments
-
-Give credit to any resources, tools, or individuals that influenced or supported your project.
-
-```
-
-Feel free to customize the template to better suit your project.
