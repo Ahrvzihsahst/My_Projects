@@ -77,10 +77,6 @@ def chat():
     user_message = request.json['message']
     ints = predict_class(user_message, model)
     response = getResponse(ints, intents)
-    # Process the user's message (you can replace this with your chatbot logic)
-    # For now, let's just echo back the same message
-    #bot_message = user_message
-    
     response = {
         'message': response
     }
