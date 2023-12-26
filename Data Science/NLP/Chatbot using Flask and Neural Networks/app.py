@@ -1,95 +1,92 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Dec 23 17:19:09 2023
+Created on Tue Dec 26 22:46:53 2023
 
 @author: BISWAJIT
 """
 
 from flask import Flask, render_template, request, jsonify
-from tensorflow.keras.models import load_model
-import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
+import pickle
+import numpy as np
+from keras.models import load_model
 import json
 import random
 
-app = Flask(__name__)
 
-# Load the trained chatbot model
-model = load_model("chatbot_model.h5")
-
-# Load NLTK resources
-nltk.download('punkt')
-nltk.download('wordnet')
-lemmatizer = WordNetLemmatizer()
-
-# Load intents from JSON file
-with open("intents_by_me.json", 'r') as file:
-    intents = json.load(file)
-
-# Preprocess data
-words = []
-classes = []
-documents = []
-
-for intent in intents['intents']:
-    for pattern in intent['patterns']:
-        w = [lemmatizer.lemmatize(word.lower()) for word in nltk.word_tokenize(pattern) if word.isalnum()]
-        words.extend(w)
-        documents.append((w, intent['tag']))
-        if intent['tag'] not in classes:
-            classes.append(intent['tag'])
-
-words = sorted(list(set(words)))
-classes = sorted(list(set(classes)))
+model = load_model('chatbot_model.h5')
+intents = json.loads(open('intents_by_me.json').read())
+words = pickle.load(open('words.pkl','rb'))
+classes = pickle.load(open('classes.pkl','rb'))
 
 def clean_up_sentence(sentence):
-    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in nltk.word_tokenize(sentence) if word.isalnum()]
+    # tokenize the pattern - split words into array
+    sentence_words = nltk.word_tokenize(sentence)
+    # stem each word - create short form for word
+    sentence_words = [lemmatizer.lemmatize(word.lower()) for word in sentence_words]
     return sentence_words
 
+# return bag of words array: 0 or 1 for each word in the bag that exists in the sentence
+
 def bow(sentence, words, show_details=True):
+    # tokenize the pattern
     sentence_words = clean_up_sentence(sentence)
+    # bag of words - matrix of N words, vocabulary matrix
     bag = [0]*len(words)  
     for s in sentence_words:
-        for i, w in enumerate(words):
-            if w == s:
+        for i,w in enumerate(words):
+            if w == s: 
+                # assign 1 if current word is in the vocabulary position
                 bag[i] = 1
                 if show_details:
                     print ("found in bag: %s" % w)
     return(np.array(bag))
 
+def predict_class(sentence, model):
+    # filter out predictions below a threshold
+    p = bow(sentence, words,show_details=False)
+    res = model.predict(np.array([p]))[0]
+    ERROR_THRESHOLD = 0.25
+    results = [[i,r] for i,r in enumerate(res) if r>ERROR_THRESHOLD]
+    # sort by strength of probability
+    results.sort(key=lambda x: x[1], reverse=True)
+    return_list = []
+    for r in results:
+        return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
+    return return_list
+
+def getResponse(ints, intents_json):
+    tag = ints[0]['intent']
+    list_of_intents = intents_json['intents']
+    for i in list_of_intents:
+        if(i['tag']== tag):
+            result = random.choice(i['responses'])
+            break
+    return result
+
+app = Flask(__name__)
+
 @app.route('/')
-def index():
-    return render_template('test_index.html')
+def home():
+    return render_template('index.html')
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
-    try:
-        # Get user input from the frontend
-        user_input = request.json['message']
+    user_message = request.json['message']
+    ints = predict_class(user_message, model)
+    response = getResponse(ints, intents)
+    # Process the user's message (you can replace this with your chatbot logic)
+    # For now, let's just echo back the same message
+    #bot_message = user_message
+    
+    response = {
+        'message': response
+    }
 
-        # Predict intent using the trained model
-        p = bow(user_input, words, show_details=False)
-        res = model.predict(np.array([p]))[0]
-        ERROR_THRESHOLD = 0.25
-        results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
+    return jsonify(response)
 
-        # Get the most probable intent
-        results.sort(key=lambda x: x[1], reverse=True)
-        intent = classes[results[0][0]]
-
-        # Find the appropriate response
-        for i in intents['intents']:
-            if i['tag'] == intent:
-                response = random.choice(i['responses'])
-                break
-
-        # Return the response to the frontend
-        return jsonify({'message': response})
-
-    except Exception as e:
-        print(e)
-        return jsonify({'message': 'Internal Server Error'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5000)

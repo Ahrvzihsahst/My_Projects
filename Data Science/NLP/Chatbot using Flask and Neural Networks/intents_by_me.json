@@ -2,32 +2,32 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["Hi there", "How are you", "Is anyone there?", "Hey", "Hola", "Hello", "Good day"],
-      "responses": ["Hello, thanks for asking", "Good to see you again", "Hi there, how can I help?"],
+      "patterns":  ["Hi", "Hey", "Greetings", "Hello there", "What's up", "Hi, how are you?", "Good to see you", "Hey, how's it going", "Hola amigo", "Hey, what's happening"],
+      "responses":  ["Hello! How can I assist you today?", "Hi there! What can I do for you?", "Hey! How may I help you?", "Hola! What brings you here?", "Greetings! Need any help?", "Good to see you! What's on your mind?", "Hey, how's it going? What do you need help with?", "Hello there! How can I assist you today?", "Hi, how are you doing? How can I assist?", "Hey, what's happening? How can I assist you today?"],
       "context": [""]
     },
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
-      "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."],
+      "patterns": ["Goodbye", "Farewell", "See you around", "Take care", "Until next time", "Adios", "Bye for now", "See you later alligator", "Catch you later", "So long"],
+      "responses": ["Goodbye! Have a great day.", "Farewell! Until we meet again.", "See you around! Take care.", "Take care! Until next time.", "Until next time! Have a wonderful day.", "Adios! Until we meet again.", "Bye for now! Take care.", "See you later alligator! Have a great day.", "Catch you later! Take care.", "So long! Until we meet again."],
       "context": [""]
     },
     {
       "tag": "portfolio",
-      "patterns": ["Tell me about your portfolio", "What projects have you worked on?", "Show me your work"],
-      "responses": ["Sure, let me showcase some of my projects.", "I'd love to share my portfolio with you.", "Here are some projects I've worked on."],
+      "patterns": ["Tell me about your projects", "Showcase your portfolio", "What have you worked on?", "Projects you've done", "Display your work", "Can you show me your portfolio?", "Talk about your accomplishments", "What's in your portfolio?", "Show me what you've created", "Your previous projects"],
+      "responses": ["Sure, let me share some of my notable projects.", "I'd love to showcase my portfolio. Here are some projects I've worked on.", "Certainly! Here are some of the projects I've been a part of.", "I have a variety of projects in my portfolio. Let me tell you about a few.", "Absolutely! Here are a few projects I've worked on.", "Certainly! Here's a glimpse of my portfolio and some projects I've completed.", "Of course! Here are some notable projects from my portfolio.", "Certainly! I'll share some of the projects I've accomplished.", "Sure, let me show you a glimpse of my portfolio and the work I've done.", "Certainly! Here are some projects I'm proud to have worked on."],
       "context": [""]
     },
     {
       "tag": "skills",
-      "patterns": ["What skills do you have?", "Tell me about your skills", "What are you good at?"],
-      "responses": ["I have expertise in various skills such as programming languages, web development, and more.", "I possess skills in areas like coding, problem-solving, and collaboration."],
+      "patterns": ["What are your strengths?", "Tell me about your capabilities", "Skills you possess", "Areas of expertise", "What can you do?", "What are you good at?", "List your skills", "Tell me about your talents", "Your abilities", "What skills do you bring to the table?"],
+      "responses": ["I possess a variety of skills including programming languages, problem-solving, and collaboration.", "My skills encompass a wide range, from coding to effective problem-solving.", "Certainly! I bring skills in areas like programming, web development, and more.", "I excel in various areas, including coding, problem-solving, and collaboration.", "I'm skilled in programming languages, web development, and other technical domains.", "My skills span coding, problem-solving, and effective collaboration.", "Certainly! Some of my key skills include programming, problem-solving, and collaboration.", "I bring skills in coding, web development, and other technical areas to the table.", "Certainly! I'm skilled in programming languages, problem-solving, and collaboration.", "My abilities include proficiency in programming languages, effective problem-solving, and collaborative teamwork."],
       "context": [""]
     },
     {
       "tag": "contact",
-      "patterns": ["How can I contact you?", "What's your contact information?", "Contact details"],
-      "responses": ["You can reach out to me via email at example@email.com.", "Feel free to contact me through the provided email address."],
+      "patterns":  ["How can I reach you?", "Contact information", "Tell me your email", "Ways to contact you", "How do I connect with you?", "Provide your contact details", "Contact info please", "What's your email address?", "Give me your contact information", "How to get in touch with you?"],
+      "responses": ["Feel free to contact me via email at example@email.com.", "You can reach out to me through the provided email address.", "Certainly! You can contact me by emailing example@email.com.", "If you need to get in touch, please reach out to me at example@email.com.", "My contact information is available via email at example@email.com.", "Sure, you can connect with me through the provided email address.", "Feel free to contact me via email at example@email.com.", "If you have any questions, you can reach me at example@email.com.", "You can contact me through the provided email address.", "Feel free to get in touch via email at example@email.com."],
       "context": [""]
     }
   ]

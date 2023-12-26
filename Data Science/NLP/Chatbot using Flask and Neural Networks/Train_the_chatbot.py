@@ -15,11 +15,12 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.optimizers import SGD
 import random
+import pickle
 
 # Download NLTK resources
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('stopwords')
+#nltk.download('punkt')
+#nltk.download('wordnet')
+#nltk.download('stopwords')
 
 # Create a lemmatizer object and set of stopwords
 lemmatizer = WordNetLemmatizer()
@@ -45,6 +46,8 @@ for intent in intents['intents']:
 
 words = sorted(list(set(words)))
 classes = sorted(list(set(classes)))
+pickle.dump(words,open('words.pkl','wb'))
+pickle.dump(classes,open('classes.pkl','wb'))
 
 # Create training data
 training = []
@@ -58,7 +61,7 @@ for doc in documents:
 
 # Shuffle and split data
 random.shuffle(training)
-train_set, test_set = train_test_split(training, test_size=0.2, random_state=42)
+train_set, test_set = train_test_split(training, test_size=0.2, random_state=0)
 
 # Convert to NumPy array
 train_x = np.array([item[0] for item in train_set])
@@ -69,6 +72,7 @@ test_y = np.array([item[1] for item in test_set])
 # Build the model
 model = Sequential()
 model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
+#model.add(Dense(128, input_shape=(42,), activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
