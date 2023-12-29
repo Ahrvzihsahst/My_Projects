@@ -11,7 +11,7 @@ This repository contains the code for a machine learning project focused on pred
 - [Installation](#installation)
 - [Usage](#usage)
 - [Dependencies](#dependencies)
-- [How It Works](#how-it-works)
+- [Rank TAble](#rank-table)
 - [Who Can Use It](#who-can-use-it)
 - [Impact](#impact)
 - [Contributing](#contributing)
@@ -72,9 +72,33 @@ The project relies on the following Python libraries:
 pip install numpy pandas matplotlib scikit-learn xgboost lightgbm catboost
 ```
 
-### How It Works
+## Rank Table
 
-Explained Above
+### Without GridSearchCv
+|index|Algorithm|Accuracy|Bias|Variance|
+|---|---|---|---|---|
+|0|LogisticRegression|78\.9|78\.9|78\.9|
+|1|DecisionTreeClassifier|80\.2|100\.0|80\.2|
+|2|RandomForestClassifier|86\.5|99\.9|86\.5|
+|3|SVC|79\.7|79\.6|79\.7|
+|4|KNeighborsClassifier|76\.4|81\.6|76\.4|
+|5|GaussianNB|78\.4|78\.5|78\.4|
+|6|MLPClassifier|78\.3|78\.9|78\.3|
+|7|VotingClassifier|81\.2|85\.0|81\.2|
+
+### With Grid Searchcv
+|index|Algorithm|Accuracy|
+|---|---|---|
+|0|Logistic Regression|78\.9|
+|1|Bernoulli Naive Bayes|78\.60|
+|2|Gaussian Naive Bayes|78\.45|
+|3|MultiNomial Naive Bayes|54\.40|
+|4|Decision Trees|85\.15|
+|5|Random Forest|86\.55|
+|6|Support Vector Machines \(SVM\)|79\.75|
+|7|k-Nearest Neighbors \(k-NN\)|77\.9|
+|8|XGBoost|85\.25|
+|9|LightGBM|86\.9|
 
 ### Who Can Use It
 
