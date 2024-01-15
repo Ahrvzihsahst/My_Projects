@@ -1,13 +1,37 @@
-```markdown
 # Customer Churn Analysis
+## Overview
+This repository contains the code for a machine learning project focused on predicting customer churn. Customer churn refers to the phenomenon of customers discontinuing their relationship with a business. The project employs various classification algorithms to analyze a dataset and make predictions regarding customer behavior.
 
-This project aims to analyze customer churn using machine learning algorithms. It includes data preprocessing, model training, and model evaluation.
+## Table of Contents
 
+- [Introduction](#introduction)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Rank TAble](#rank-table)
+- [Who Can Use It](#who-can-use-it)
+- [Impact](#impact)
+- [Contributing](#contributing)
+- [License](#license)
 
+## Introduction
+
+### Data
+The dataset (`Churn_Modelling.csv`) is located in the `data` directory.
+## Data Preprocessing
+The data preprocessing script (`src/data_preprocessing.py`) handles tasks such as label encoding and one-hot encoding.
+## Model Training
+The model training script (`src/train_models.py`) initializes classifiers, creates an ensemble, and trains each model.
+## Model Evaluation
+The model evaluation script (`src/evaluate_models.py`) evaluates the trained models, providing accuracy, bias, and variance metrics along with confusion matrices.
+## Running the Analysis
+Execute the main script (`main.py`) to run the complete analysis.
+## CI/CD Workflow
+The CI/CD workflow is defined in `.github/workflows/ci_cd_workflow.yml`. It runs on every push to the `main` branch.
 
 ## Project Structure
 
-```
 customer_churn_analysis/
 │
 ├── data/
@@ -33,95 +57,6 @@ customer_churn_analysis/
 ├── requirements.txt
 ├── main.py
 └── .gitignore
-```
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.x
-- Install dependencies by running:
-
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-### Data
-
-The dataset (`Churn_Modelling.csv`) is located in the `data` directory.
-
-## Data Preprocessing
-
-The data preprocessing script (`src/data_preprocessing.py`) handles tasks such as label encoding and one-hot encoding.
-
-## Model Training
-
-The model training script (`src/train_models.py`) initializes classifiers, creates an ensemble, and trains each model.
-
-## Model Evaluation
-
-The model evaluation script (`src/evaluate_models.py`) evaluates the trained models, providing accuracy, bias, and variance metrics along with confusion matrices.
-
-## Running the Analysis
-
-Execute the main script (`main.py`) to run the complete analysis:
-
-```bash
-python main.py
-```
-
-## Tests
-
-Unit tests for data preprocessing, model training, and model evaluation can be found in the `tests` directory. Run tests using:
-
-```bash
-pytest
-```
-
-## CI/CD Workflow
-
-The CI/CD workflow is defined in `.github/workflows/ci_cd_workflow.yml`. It runs on every push to the `main` branch.
-
-# Customer Churn Analysis - Machine Learning Project
-
-## Overview
-
-This repository contains the code for a machine learning project focused on predicting customer churn. Customer churn refers to the phenomenon of customers discontinuing their relationship with a business. The project employs various classification algorithms to analyze a dataset and make predictions regarding customer behavior.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Dependencies](#dependencies)
-- [Rank TAble](#rank-table)
-- [Who Can Use It](#who-can-use-it)
-- [Impact](#impact)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
-
-In this project, we aim to understand and predict customer churn using machine learning techniques. The project involves the following key steps:
-
-1. **Data Loading and Exploration:** We start by importing necessary libraries, loading the dataset, and exploring its structure and content.
-
-2. **Data Preprocessing:** The data is preprocessed to handle categorical variables, missing data, and to split the dataset into training and testing sets.
-
-3. **Applying Classification Algorithms:** Various classification algorithms, including Logistic Regression, Naive Bayes, Decision Trees, Random Forest, Support Vector Machines, k-Nearest Neighbors, and Gradient Boosting (XGBoost, LightGBM, CatBoost) are applied to train models and make predictions.
-
-4. **Model Evaluation:** We evaluate the performance of each model using metrics such as accuracy, bias, variance, and classification reports.
-
-5. **Comparison of Models:** Finally, we compare the accuracy of different models to determine which one is most effective in predicting customer churn.
-
-## Project Structure
-
-The project structure is organized as follows:
-
-- **`src/`**: Contains the source code for the machine learning project.
-- **`data/`**: Placeholder for the dataset used in the project.
-- **`README.md`**: Provides an overview of the project, usage instructions, and other relevant information.
 
 ## Installation
 
@@ -157,7 +92,6 @@ pip install numpy pandas matplotlib scikit-learn xgboost lightgbm catboost
 ```
 
 ## Rank Table
-
 ### Without GridSearchCv
 |index|Algorithm|Accuracy|Bias|Variance|
 |---|---|---|---|---|
@@ -197,7 +131,6 @@ Additionally, the code provides a framework for comparing and selecting the most
 ## Contributing
 
 Feel free to contribute to this project by forking the repository and submitting pull requests. Bug reports, suggestions, and feature requests are also welcome.
-
 
 ## License
 
