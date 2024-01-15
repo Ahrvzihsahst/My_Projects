@@ -1,3 +1,87 @@
+```markdown
+# Customer Churn Analysis
+
+This project aims to analyze customer churn using machine learning algorithms. It includes data preprocessing, model training, and model evaluation.
+
+
+
+## Project Structure
+
+```
+customer_churn_analysis/
+│
+├── data/
+│   └── Churn_Modelling.csv
+│
+├── src/
+│   ├── __init__.py
+│   ├── data_preprocessing.py
+│   ├── train_models.py
+│   └── evaluate_models.py
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_data_preprocessing.py
+│   ├── test_train_models.py
+│   └── test_evaluate_models.py
+│
+├── .github/
+│   └── workflows/
+│       └── ci_cd_workflow.yml
+│
+├── README.md
+├── requirements.txt
+├── main.py
+└── .gitignore
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.x
+- Install dependencies by running:
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+### Data
+
+The dataset (`Churn_Modelling.csv`) is located in the `data` directory.
+
+## Data Preprocessing
+
+The data preprocessing script (`src/data_preprocessing.py`) handles tasks such as label encoding and one-hot encoding.
+
+## Model Training
+
+The model training script (`src/train_models.py`) initializes classifiers, creates an ensemble, and trains each model.
+
+## Model Evaluation
+
+The model evaluation script (`src/evaluate_models.py`) evaluates the trained models, providing accuracy, bias, and variance metrics along with confusion matrices.
+
+## Running the Analysis
+
+Execute the main script (`main.py`) to run the complete analysis:
+
+```bash
+python main.py
+```
+
+## Tests
+
+Unit tests for data preprocessing, model training, and model evaluation can be found in the `tests` directory. Run tests using:
+
+```bash
+pytest
+```
+
+## CI/CD Workflow
+
+The CI/CD workflow is defined in `.github/workflows/ci_cd_workflow.yml`. It runs on every push to the `main` branch.
+
 # Customer Churn Analysis - Machine Learning Project
 
 ## Overview
@@ -113,6 +197,11 @@ Additionally, the code provides a framework for comparing and selecting the most
 ## Contributing
 
 Feel free to contribute to this project by forking the repository and submitting pull requests. Bug reports, suggestions, and feature requests are also welcome.
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+
+Replace the placeholders like `Your Project Name`, `Your Project Description`, etc., with the actual details relevant to your project. Additionally, if there are specific instructions for setting up, running, or contributing to the project, include them in the README.
