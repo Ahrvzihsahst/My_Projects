@@ -9,7 +9,7 @@ ROI_bottom = 300
 ROI_right = 150
 ROI_left = 350
 
-
+# This function is designed to maintain an accumulated background model over time by updating it with weighted contributions from incoming frames.
 def cal_accum_avg(frame, accumulated_weight):
 
     global background
@@ -20,7 +20,7 @@ def cal_accum_avg(frame, accumulated_weight):
 
     cv2.accumulateWeighted(frame, background, accumulated_weight)
 
-
+#  This function takes a frame, compares it with the accumulated background, and extracts the hand region by applying thresholding and contour detection.
 def segment_hand(frame, threshold=25):
     global background
     
@@ -42,6 +42,8 @@ def segment_hand(frame, threshold=25):
         
         return (thresholded, hand_segment_max_cont)
 
+
+# This is the part of a program that captures images from a webcam, processes them to detect a hand gesture, and saves the segmented hand region as images.
 
 cam = cv2.VideoCapture(0)
 
@@ -121,7 +123,7 @@ while True:
     # Drawing ROI on frame copy
     cv2.rectangle(frame_copy, (ROI_left, ROI_top), (ROI_right, ROI_bottom), (255,128,0), 3)
     
-    cv2.putText(frame_copy, "DataFlair hand sign recognition_ _ _", (10, 20), cv2.FONT_ITALIC, 0.5, (51,255,51), 1)
+    cv2.putText(frame_copy, " Hand sign recognition by Biswa", (10, 20), cv2.FONT_ITALIC, 0.5, (51,255,51), 1)
     
     # increment the number of frames for tracking
     num_frames += 1
